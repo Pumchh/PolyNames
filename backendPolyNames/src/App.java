@@ -23,5 +23,10 @@ public class App {
             (WebServerContext context) -> {CardController.putChooseCardsInTable(context, CardController.chooseCards(context));}
             );
 
+        webServer.getRouter().get(
+            "/get_cards",
+            (WebServerContext context) -> {CardController.getSelectedCards(context);}
+        );
+
     }
 }

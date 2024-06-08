@@ -89,4 +89,28 @@ public class CardDAO {
         }
     }
 
+    public ArrayList<SelectedCards> getSelectedCards(){
+        ArrayList<SelectedCards> cards = new ArrayList<SelectedCards>();
+        try{
+            PolyNamesDatabase database = new PolyNamesDatabase();
+            String request = "SELECT * FROM selected_cards;";
+
+            PreparedStatement statement = database.prepareStatement(request);
+            ResultSet result = statement.executeQuery();
+
+            while(result.next()){
+                int id = result.getInt("id");
+                String word = result.getString("word");
+                String color = result.getString("color");
+
+                SelectedCards card = new SelectedCards(id, word, color);
+                cards.add(card);
+            }
+
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }
+        return cards;
+    }
+
 }

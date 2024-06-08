@@ -60,4 +60,22 @@ public class CardController {
         }
     }
 
+    public static ArrayList<SelectedCards> getSelectedCards(WebServerContext context){
+        ArrayList<SelectedCards> cards = new ArrayList<SelectedCards>();
+
+        try{
+            WebServerResponse response = context.getResponse();
+            CardDAO cardDAO = new CardDAO();
+
+            cards = cardDAO.getSelectedCards();
+
+            response.json(cards);
+            response.ok("Cartes sélectionnées");
+
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }
+        return cards;
+    }
+
 }
