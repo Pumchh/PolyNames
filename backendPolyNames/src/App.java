@@ -9,11 +9,19 @@ public class App {
         webServer.listen(8080);
 
         webServer.getRouter().get(
-            "/cards",
+            "/allcards",
             (WebServerContext context) -> {CardController.findAll(context);}
+            ); 
+
+        webServer.getRouter().get(
+            "/select_cards",
+            (WebServerContext context) -> {CardController.chooseCards(context);}
             );
 
-
+        webServer.getRouter().post(
+            "/put_cards",
+            (WebServerContext context) -> {CardController.putChooseCardsInTable(context, CardController.chooseCards(context));}
+            );
 
     }
 }

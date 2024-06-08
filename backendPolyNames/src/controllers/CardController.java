@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import dao.CardDAO;
 import models.Card;
+import models.SelectedCards;
 import webserver.WebServerContext;
 import webserver.WebServerResponse;
 
@@ -23,9 +24,40 @@ public class CardController {
         }catch(Exception e){
             System.out.println("Error: " + e);
         }
-
-
-
         return cards;
     }
+
+    public static ArrayList<SelectedCards> chooseCards(WebServerContext context){
+        ArrayList<SelectedCards> cards = new ArrayList<SelectedCards>();
+
+        try{
+            WebServerResponse response = context.getResponse();
+            CardDAO cardDAO = new CardDAO();
+
+            cards = cardDAO.chooseCards();
+
+            response.json(cards);
+            response.ok("25 cartes choisies");
+
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }
+        return cards;
+    }
+
+    public static void putChooseCardsInTable(WebServerContext context, ArrayList<SelectedCards> cards){
+        try{
+            
+            WebServerResponse response = context.getResponse();
+            CardDAO cardDAO = new CardDAO();
+
+            cardDAO.putChooseCardsInTable(cards);
+
+            response.ok("25 cartes choisies et ajoutées à la table");
+
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }
+    }
+
 }

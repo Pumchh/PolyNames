@@ -4,6 +4,12 @@ CREATE TABLE IF NOT EXISTS cards (
     word VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS selected_cards (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    word VARCHAR(50) NOT NULL,
+    color VARCHAR(10) NOT NULL
+);
+
 INSERT INTO cards (word) VALUES 
 ('Afrique'),
 ('Aiguille'),
