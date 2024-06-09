@@ -37,7 +37,7 @@ public class CardController {
             cards = cardDAO.chooseCards();
 
             response.json(cards);
-            response.ok("25 cartes choisies");
+            response.ok("25 cards selected");
 
         }catch(Exception e){
             System.out.println("Error: " + e);
@@ -53,7 +53,9 @@ public class CardController {
 
             cardDAO.putChooseCardsInTable(cards);
 
-            response.ok("25 cartes choisies et ajoutées à la table");
+            response.ok("25 cards added to the table");
+
+            System.out.println("25 cards added to the table");
 
         }catch(Exception e){
             System.out.println("Error: " + e);
@@ -70,7 +72,9 @@ public class CardController {
             cards = cardDAO.getSelectedCards();
 
             response.json(cards);
-            response.ok("Cartes sélectionnées");
+            response.ok("Get cards selected");
+
+            System.out.println("Get cards selected");
 
         }catch(Exception e){
             System.out.println("Error: " + e);

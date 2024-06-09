@@ -56,7 +56,7 @@ public class CardDAO {
                 else if(24 <= i && i <= 25)
                     color = "black";
 
-                SelectedCards selectedCard = new SelectedCards(i, word, color);
+                SelectedCards selectedCard = new SelectedCards(i, word, color, false);
                 cards.add(selectedCard);
                 i++;
             }
@@ -103,7 +103,7 @@ public class CardDAO {
                 String word = result.getString("word");
                 String color = result.getString("color");
 
-                SelectedCards card = new SelectedCards(id, word, color);
+                SelectedCards card = new SelectedCards(id, word, color, false);
                 cards.add(card);
             }
 

@@ -7,8 +7,25 @@ CREATE TABLE IF NOT EXISTS cards (
 CREATE TABLE IF NOT EXISTS selected_cards (
     id INT AUTO_INCREMENT PRIMARY KEY,
     word VARCHAR(50) NOT NULL,
-    color VARCHAR(10) NOT NULL
+    color VARCHAR(10) NOT NULL,
+    isKnown BOOL NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS player (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    pseudo VARCHAR(40) NOT NULL,
+    rolePlayer VARCHAR(40)
+);
+
+CREATE TABLE IF NOT EXISTS game (
+    code VARCHAR(10) PRIMARY KEY,
+    grid VARCHAR(255),
+    player1 VARCHAR(40),
+    player2 VARCHAR(40),
+    score INT
+);
+
+
 
 INSERT INTO cards (word) VALUES 
 ('Afrique'),
