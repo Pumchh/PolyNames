@@ -1,29 +1,43 @@
+-- Create the table for Player
+CREATE TABLE IF NOT EXISTS Player (
+    name VARCHAR(15) PRIMARY KEY
+);
 
-CREATE TABLE IF NOT EXISTS cards (
+-- Create the table for Cards
+CREATE TABLE IF NOT EXISTS Cards (
+    card_ID INT AUTO_INCREMENT PRIMARY KEY,
+    word VARCHAR(32)
+);
+
+-- Create the table for SelectedCards
+CREATE TABLE IF NOT EXISTS SelectedCards (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    word VARCHAR(255) NOT NULL
+    card_ID INT,
+    color VARCHAR(10),
+    is_revealed BOOLEAN,
+    FOREIGN KEY (card_ID) REFERENCES Cards(card_ID)
 );
 
-CREATE TABLE IF NOT EXISTS selected_cards (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    word VARCHAR(50) NOT NULL,
-    color VARCHAR(10) NOT NULL,
-    isKnown BOOL NOT NULL
+-- Create the table for Game
+CREATE TABLE IF NOT EXISTS Game (
+    game_ID INT AUTO_INCREMENT PRIMARY KEY,
+    session_code INT,
+    hintMaster VARCHAR(15),
+    wordMaster VARCHAR(15),
+    score INT,
+    FOREIGN KEY (hintMaster) REFERENCES Player(name),
+    FOREIGN KEY (wordMaster) REFERENCES Player(name)
 );
 
-CREATE TABLE IF NOT EXISTS player (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    pseudo VARCHAR(40) NOT NULL,
-    rolePlayer VARCHAR(40)
+-- Create the table for Round
+CREATE TABLE IF NOT EXISTS Round (
+    round_ID INT AUTO_INCREMENT PRIMARY KEY,
+    hint VARCHAR(32),
+    guess_value INT,
+    round_score INT
 );
 
-CREATE TABLE IF NOT EXISTS game (
-    code VARCHAR(10) PRIMARY KEY,
-    grid VARCHAR(255),
-    player1 VARCHAR(40),
-    player2 VARCHAR(40),
-    score INT
-);
+
 
 
 

@@ -1,6 +1,6 @@
 package models;
 
-public record Card(
+public record Cards(
     int card_ID,
     String word
 ){}

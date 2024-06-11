@@ -2,39 +2,21 @@ package controllers;
 
 import java.util.ArrayList;
 
-import dao.CardDAO;
-import models.Card;
+
+import dao.SelectedCardsDAO;
 import models.SelectedCards;
 import webserver.WebServerContext;
 import webserver.WebServerResponse;
 
-public class CardController {
-    public static ArrayList<Card> findAll(WebServerContext context) {
-        ArrayList<Card> cards = new ArrayList<Card>();
-        
-        try{
-            WebServerResponse response = context.getResponse();
-            CardDAO cardDAO = new CardDAO();
-
-            cards = cardDAO.findAll();
-
-            response.json(cards);
-            response.ok("Toutes les cartes");
-
-        }catch(Exception e){
-            System.out.println("Error: " + e);
-        }
-        return cards;
-    }
-
-    public static ArrayList<SelectedCards> chooseCards(WebServerContext context){
+public class SelectedCardsController {
+        public static ArrayList<SelectedCards> pick25Cards(WebServerContext context){
         ArrayList<SelectedCards> cards = new ArrayList<SelectedCards>();
 
         try{
             WebServerResponse response = context.getResponse();
-            CardDAO cardDAO = new CardDAO();
+            SelectedCardsDAO selectedCardsDAO = new SelectedCardsDAO();
 
-            cards = cardDAO.chooseCards();
+            cards = selectedCardsDAO.pick25Cards();
 
             response.json(cards);
             response.ok("25 cards selected");
@@ -45,13 +27,13 @@ public class CardController {
         return cards;
     }
 
-    public static void putChooseCardsInTable(WebServerContext context, ArrayList<SelectedCards> cards){
+    public static void putCardsInTable(WebServerContext context, ArrayList<SelectedCards> cards){
         try{
             
             WebServerResponse response = context.getResponse();
-            CardDAO cardDAO = new CardDAO();
+            SelectedCardsDAO cardDAO = new SelectedCardsDAO();
 
-            cardDAO.putChooseCardsInTable(cards);
+            cardDAO.putCardsInTable(cards);
 
             response.ok("25 cards added to the table");
 
@@ -67,9 +49,9 @@ public class CardController {
 
         try{
             WebServerResponse response = context.getResponse();
-            CardDAO cardDAO = new CardDAO();
+            SelectedCardsDAO selectedCardsDAO = new SelectedCardsDAO();
 
-            cards = cardDAO.getSelectedCards();
+            cards = selectedCardsDAO.getSelectedCards();
 
             response.json(cards);
             response.ok("Get cards selected");
@@ -80,6 +62,28 @@ public class CardController {
             System.out.println("Error: " + e);
         }
         return cards;
+    }
+
+    public static ArrayList<String> getWordsByIds(WebServerContext context, ArrayList<Integer> ids){
+        ArrayList<String> words = new ArrayList<String>();
+
+        try{
+            WebServerResponse response = context.getResponse();
+            SelectedCardsDAO selectedCardsDAO = new SelectedCardsDAO();
+
+            for(int id : ids){
+                words.add(selectedCardsDAO.getWordById(id));
+            }
+
+            response.json(words);
+            response.ok("Get words selected");
+
+            System.out.println("Get words selected");
+
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }
+        return words;
     }
 
 }
