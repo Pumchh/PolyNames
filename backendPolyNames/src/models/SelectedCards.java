@@ -2,7 +2,7 @@ package models;
 
 public record SelectedCards(
     int id,
-    String name,
+    int card_ID,
     String color,
-    boolean isKnown
+    boolean is_revealed
 ) {}
