@@ -25,27 +25,16 @@ body{
 
 
 .Box {
-<<<<<<< HEAD
     width: 400px;
-=======
-    width: 260px;
->>>>>>> b5c490cc84de6203b59b2b469e47bb3e342b393e
   
     border-radius: 25px;
     height: 500px;
     display: flex;
     flex-direction: column;
-<<<<<<< HEAD
     justify-content: center;
-=======
->>>>>>> b5c490cc84de6203b59b2b469e47bb3e342b393e
     align-items: center;
     text-align: center;
     background-color: #eeeeee;  
     padding: 10pix;
-<<<<<<< HEAD
-
-=======
->>>>>>> b5c490cc84de6203b59b2b469e47bb3e342b393e
 }
 
