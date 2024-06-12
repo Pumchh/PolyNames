@@ -1,0 +1,66 @@
+@import url(grid.css);
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', Arial, sans-serif;
+
+    background-color: #222;
+    background-image: url(../images/fond2.avif);
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+#BandeauTitre {
+    background-color: darkcyan;
+    box-shadow: 0 0 15px #100;
+    color: #eee;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+#game {
+    width:95%;
+    height: 95%;
+    display: flex;
+    align-items: center;
+}
+
+#page-body {
+    width: 100vw;
+    height: 90vh;
+    margin: 0;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    
+}
+
+#history-box {
+    width: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#score-box {
+    align-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+#score-box > p {
+    justify-content: center;
+    align-items: center;
+}
