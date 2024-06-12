@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styleAccueil.css">
-    <title>Polynames</title>
+    
+    <title>Polynames Accueil</title>
 </head>
 <body>
    <div id = "BandeauTitre"> 
-        <h2> Polynames </h2>
+        <h1> Polynames </h1>
    </div>
    <div id="BoxSpace">
         <div class="Box"> 
-            <h3> Bienvenue à Polynames</h3>
+            <h2> Bienvenue à Polynames</h2>
             <p>
                 Ce jeu vous es proposé par Gaël et Martial
             </p>
@@ -21,12 +22,30 @@
         </div>
 
         <div class="Box"> 
-            <h3>Les règles du jeux : </h3>
+            <h2>Les règles du jeux : </h2>
         </div>
 
         <div class="Box"> 
+
+            <h2>Jouez dès maintenant !</h2>
+            <div>
+                <h3> Votre Pseudo içi ! </h3>
+                <input type="text" id="gameCode"> <br><br>
+            </div>
+            <div>
+                <h3> Créer une partie ? </h3>
+                <button id="createGame">Cliquez içi !</button>
+            </div>
+            <div>
+                <h3> Rejoindre une partie existante ? </h3>
+                <p> Inscrivez votre code de partie ci-dessous et ...</p>
+                <input type="text" id="gameCode"> <br><br>
+                <button id="joinGame">... Cliquez içi !</button>
+                <p id="answer"></p>
+            </div>
             
         </div>
    </div>
+   <script src="js/main.js"></script>
 </body>
 </html>

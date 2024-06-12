@@ -25,15 +25,17 @@ body{
 
 
 .Box {
-    width: 260px;
+    width: 400px;
   
     border-radius: 25px;
     height: 500px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     text-align: center;
     background-color: #eeeeee;  
     padding: 10pix;
+
 }
 
