@@ -2,5 +2,8 @@ package models;
 
 public record Cards(
     int card_ID,
-    String word
-){}
+    int game_ID,
+    int word_ID,
+    String color,
+    boolean is_revealed
+) {}

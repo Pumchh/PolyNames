@@ -1,5 +1,5 @@
+import controllers.WordController;
 import controllers.CardsController;
-import controllers.SelectedCardsController;
 import webserver.WebServer;
 import webserver.WebServerContext;
 
@@ -11,23 +11,23 @@ public class App {
 
         webServer.getRouter().get(
             "/allcards",
-            (WebServerContext context) -> {CardsController.findAll(context);}
+            (WebServerContext context) -> {WordController.findAll(context);}
             ); 
 
         webServer.getRouter().get(
             "/getword/:card_ID",
-            (WebServerContext context) -> {CardsController.getWordById(context);}
+            (WebServerContext context) -> {WordController.getWordById(context);}
             );
 
         webServer.getRouter().post(
             "/put_cards",
-            (WebServerContext context) -> {SelectedCardsController.putCardsInTable(context, SelectedCardsController.pick25Cards(context));}
+            (WebServerContext context) -> {CardsController.putCardsInTable(context, CardsController.pick25Cards(context));}
             );
 
         
         webServer.getRouter().get(
             "/get_selectedcards",
-            (WebServerContext context) -> {SelectedCardsController.getSelectedCards(context);}
+            (WebServerContext context) -> {CardsController.getSelectedCards(context);}
             );
 
 
