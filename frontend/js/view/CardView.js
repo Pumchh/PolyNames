@@ -3,6 +3,18 @@ import { CardsService  } from "../services/CardServices.js";
 export class CardsView{
     
 async displayCards() {
+    let stockage = await CardsService.getCards()
+    let arrayOfCard = []
+    console.log(stockage)
+    let i=0
+    for(let bob in stockage){
+        let result = stockage[bob]
+        this.#displayCard
+    }
+
+    let allCard = document.querySelectorAll('card')
+  
+    sessionStorage.grid = stockage
     let data = await CardsService.getWords();
     //let list = JSON.parse(data)
     for(let i = 0; i<data.length;i++){
@@ -10,17 +22,17 @@ async displayCards() {
     }
 }
 
-#displayCard(_word){
+async #displayCard(_card){
     let allCard = document.querySelectorAll('card')
-    console.log(_word)
+    //console.log(_word)
     let i=0;
     for(i;i<=allCard.length;i++){
-        if(allCard[i].innerHTML === ""){
+        if(allCard[i].cardObject === undefined ){
             
-            allCard[i].innerHTML = _word;
-            break;
+            allCard[i].cardObject = _card;
         }
     }
+
 }
 
 }

@@ -11,6 +11,11 @@ async function gameCreation(){
     await view.displayCards();
 }
 
+async function  actualizeCards(){
+    const view = new CardsView()
+    await view.displayCards();
+}
+
 function generateCards(){
     const grid = document.getElementById("grid");
     for(let i=0; i < 25; ++i){
@@ -28,8 +33,23 @@ async function displayRightHTML(){
         await gameCreation();
         
     }
+    if(sessionStorage.Role_Choice == "HintMaster"){
+        const view = new CardsView()
+        CardsService.getCards()
+        await view.displayCards();
+
+        let allCards = document.querySelectorAll('card')
+        allCards.forEach((card) => {
+            card.addEventListener("click", cardClicked())
+        })
+    }
 
 }
+
+async function cardClicked(){
+    
+}
+
 
 function sendHint(){
     console.log("click")
