@@ -9,6 +9,8 @@ import models.Cards;
 
 public class CardsDAO {
 
+    int game_ID = GameDAO.getGameIDStatic();
+
     public CardsDAO() {
         
     }
@@ -36,7 +38,7 @@ public class CardsDAO {
                 else if(24 <= i && i <= 25)
                     color = "black";
 
-                Cards selectedCard = new Cards(i, 0, word_ID, color, false);
+                Cards selectedCard = new Cards(i, game_ID, word_ID, color, false);
                 cards.add(selectedCard);
                 i++;
             }
@@ -83,7 +85,7 @@ public class CardsDAO {
                 int word_ID = result.getInt("word_ID");
                 String color = result.getString("color");
 
-                Cards card = new Cards(id, 0, word_ID, color, false);
+                Cards card = new Cards(id, game_ID, word_ID, color, false);
                 cards.add(card);
             }
 
