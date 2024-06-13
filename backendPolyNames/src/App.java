@@ -1,6 +1,6 @@
-import controllers.WordController;
 import controllers.CardsController;
 import controllers.GameController;
+import controllers.WordController;
 import webserver.WebServer;
 import webserver.WebServerContext;
 
@@ -20,18 +20,18 @@ public class App {
             (WebServerContext context) -> {WordController.getWordById(context);}
             );
 
-        webServer.getRouter().post(
+        webServer.getRouter().get(
             "/put_cards",
             (WebServerContext context) -> {CardsController.putCardsInTable(context, CardsController.pick25Cards(context));}
             );
 
         
         webServer.getRouter().get(
-            "/get_selectedcards",
+            "/get_cards",
             (WebServerContext context) -> {CardsController.getSelectedCards(context);}
             );
 
-        webServer.getRouter().post(
+        webServer.getRouter().get(
             "/create_game",
             (WebServerContext context) -> {GameController.createGame(context);}
             
