@@ -74,8 +74,7 @@ public class CardsController {
 
             response.json(words);
             response.ok("Get words");
-
-            System.out.println("Get words");
+            
 
         }catch(Exception e){
             System.out.println("Error: " + e);
