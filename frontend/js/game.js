@@ -1,12 +1,14 @@
 import { CardsService } from "./services/CardServices.js";
 import { GameService } from "./services/GameService.js";
+import { CardsView } from "./view/CardView.js";
 
 
 async function gameCreation(){
     const game = await GameService.createGame();
     sessionStorage.gameID = await GameService.getGameID();
     await CardsService.selectCards();
-    await CardsService.displayCards();
+    const view = new CardsView()
+    await view.displayCards();
 }
 
 function generateCards(){
@@ -41,9 +43,7 @@ function sendHint(){
 
 
 
-
 document.getElementById("RoleDisplay").innerHTML = document.getElementById("RoleDisplay").innerHTML + sessionStorage.Role_Choice;
-
+window.addEventListener("load", generateCards());
 
 window.addEventListener("load", displayRightHTML());
-window.addEventListener("load", generateCards());

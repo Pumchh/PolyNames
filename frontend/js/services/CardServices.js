@@ -14,14 +14,27 @@ export class CardsService {
         }
     }
 
-    static async displayCards() {
-        let list = await this.getCards()
-
-        list.forEach(element => {
-            console.log(element)
-            document.querySelectorAll('card').innerHTML = element.word_ID;
-
-        });
-
+    static async getWords(){
+        const response = await fetch("http://localhost:8080/get_words") ;
+        let data = await response.json()
+        console.log(data)
+        return data;
     }
+
+
+
+
+
+
+    static async getWord(_id){
+        const response = await fetch("http://localhost:8080/getword/"+ _id )
+        if(response.status === 200){
+            let data = await response.json()
+            //console.log(data);
+            return data;
+        }
+    }
+
 }
+
+
