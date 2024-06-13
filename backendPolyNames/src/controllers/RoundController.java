@@ -149,6 +149,25 @@ public class RoundController {
         return guessValue;
     }
 
+
+    public static int getGuessValue(WebServerContext context) {
+        int guessValue = 0;
+        try{
+            WebServerResponse response = context.getResponse();
+            RoundDAO roundDAO = new RoundDAO();
+
+            guessValue = roundDAO.getGuessValue();
+
+            response.json(guessValue);
+            response.ok("GuessValue récupéré");
+
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }
+        return guessValue;
+    }
+
+
     public static int getRoundScore(WebServerContext context) {
         int roundScore = 0;
         try{
