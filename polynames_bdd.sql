@@ -1,47 +1,41 @@
--- Create the table for Player
-CREATE TABLE IF NOT EXISTS Player (
-    name VARCHAR(15) PRIMARY KEY
+
+-- Create the Words table
+CREATE TABLE IF NOT EXISTS Words (
+    word_ID INT AUTO_INCREMENT PRIMARY KEY,
+    word VARCHAR(32) NOT NULL
 );
 
--- Create the table for Cards
-CREATE TABLE IF NOT EXISTS Cards (
-    card_ID INT AUTO_INCREMENT PRIMARY KEY,
-    word VARCHAR(32)
-);
-
--- Create the table for SelectedCards
-CREATE TABLE IF NOT EXISTS SelectedCards (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    card_ID INT,
-    color VARCHAR(10),
-    is_revealed BOOLEAN,
-    FOREIGN KEY (card_ID) REFERENCES Cards(card_ID)
-);
-
--- Create the table for Game
+-- Create the Game table
 CREATE TABLE IF NOT EXISTS Game (
     game_ID INT AUTO_INCREMENT PRIMARY KEY,
-    session_code INT,
     hintMaster VARCHAR(15),
     wordMaster VARCHAR(15),
-    score INT,
-    FOREIGN KEY (hintMaster) REFERENCES Player(name),
-    FOREIGN KEY (wordMaster) REFERENCES Player(name)
+    score INT
 );
 
--- Create the table for Round
+-- Create the Cards table
+CREATE TABLE IF NOT EXISTS Cards (
+    cards_ID INT AUTO_INCREMENT PRIMARY KEY,
+    game_ID INT,
+    word_ID INT,
+    color VARCHAR(10),
+    is_revealed BOOLEAN,
+    FOREIGN KEY (game_ID) REFERENCES Game(game_ID),
+    FOREIGN KEY (word_ID) REFERENCES Words(word_ID)
+);
+
+-- Create the Round table
 CREATE TABLE IF NOT EXISTS Round (
     round_ID INT AUTO_INCREMENT PRIMARY KEY,
+    game_ID INT,
     hint VARCHAR(32),
     guess_value INT,
-    round_score INT
+    round_score INT,
+    FOREIGN KEY (game_ID) REFERENCES Game(game_ID)
 );
 
 
-
-
-
-INSERT INTO cards (word) VALUES 
+INSERT INTO words (word) VALUES 
 ('Afrique'),
 ('Aiguille'),
 ('Aile'),
