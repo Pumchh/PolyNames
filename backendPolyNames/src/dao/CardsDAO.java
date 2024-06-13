@@ -15,36 +15,36 @@ public class CardsDAO {
 
 
     public ArrayList<Cards> pick25Cards(){
-    ArrayList<Cards> cards = new ArrayList<Cards>();
+        ArrayList<Cards> cards = new ArrayList<Cards>();
 
-    try{
-        PolyNamesDatabase database = new PolyNamesDatabase();
-        String request = "SELECT * FROM words ORDER BY RAND() LIMIT 25;";
+        try{
+            PolyNamesDatabase database = new PolyNamesDatabase();
+            String request = "SELECT * FROM words ORDER BY RAND() LIMIT 25;";
 
-        PreparedStatement statement = database.prepareStatement(request);
-        ResultSet result = statement.executeQuery();
-        int i = 1;
+            PreparedStatement statement = database.prepareStatement(request);
+            ResultSet result = statement.executeQuery();
+            int i = 1;
 
-        while(result.next()){
-            int word_ID = result.getInt("word_ID");
-            String color = "";
+            while(result.next()){
+                int word_ID = result.getInt("word_ID");
+                String color = "";
 
-            if(1 <= i && i <= 8)
-                color = "blue";
-            else if(9 <= i && i <= 23)
-                color = "grey";
-            else if(24 <= i && i <= 25)
-                color = "black";
+                if(1 <= i && i <= 8)
+                    color = "blue";
+                else if(9 <= i && i <= 23)
+                    color = "grey";
+                else if(24 <= i && i <= 25)
+                    color = "black";
 
-            Cards selectedCard = new Cards(i, 0, word_ID, color, false);
-            cards.add(selectedCard);
-            i++;
-        }
+                Cards selectedCard = new Cards(i, 0, word_ID, color, false);
+                cards.add(selectedCard);
+                i++;
+            }
 
-        }catch(Exception e){
-            System.out.println("Error: " + e);
-        }
-        return cards;
+            }catch(Exception e){
+                System.out.println("Error: " + e);
+            }
+            return cards;
     }
 
     public void putCardsInTable(ArrayList<Cards> cards){
