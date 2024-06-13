@@ -14,9 +14,9 @@ public class CardsController {
 
         try{
             WebServerResponse response = context.getResponse();
-            CardsDAO selectedCardsDAO = new CardsDAO();
+            CardsDAO cardsDAO = new CardsDAO();
 
-            cards = selectedCardsDAO.pick25Cards();
+            cards = cardsDAO.pick25Cards();
 
             response.json(cards);
             response.ok("25 cards selected");
@@ -49,9 +49,9 @@ public class CardsController {
 
         try{
             WebServerResponse response = context.getResponse();
-            CardsDAO selectedCardsDAO = new CardsDAO();
+            CardsDAO cardsDAO = new CardsDAO();
 
-            cards = selectedCardsDAO.getSelectedCards();
+            cards = cardsDAO.getSelectedCards();
 
             response.json(cards);
             response.ok("Get cards selected");
@@ -64,26 +64,67 @@ public class CardsController {
         return cards;
     }
 
-    public static ArrayList<String> getWordsByIds(WebServerContext context, ArrayList<Integer> ids){
+    public static ArrayList<String> getWords(WebServerContext context){
         ArrayList<String> words = new ArrayList<String>();
-
         try{
             WebServerResponse response = context.getResponse();
-            CardsDAO selectedCardsDAO = new CardsDAO();
-
-            for(int id : ids){
-                words.add(selectedCardsDAO.getWordById(id));
-            }
+            CardsDAO cardsDAO = new CardsDAO();
+            
+            words = cardsDAO.getWords();
 
             response.json(words);
-            response.ok("Get words selected");
+            response.ok("Get words");
 
-            System.out.println("Get words selected");
+            System.out.println("Get words");
 
         }catch(Exception e){
             System.out.println("Error: " + e);
         }
         return words;
+    }
+
+    public static void reveal(WebServerContext context){
+        try{
+            WebServerResponse response = context.getResponse();
+            CardsDAO cardDAO = new CardsDAO();
+            
+            String idTemp = context.getRequest().getParam("card_ID");
+            int card_ID = Integer.parseInt(idTemp);
+            System.out.println("Card ID : " + card_ID);
+
+            cardDAO.reveal(card_ID);
+
+            response.ok("Card revealed");
+
+            System.out.println("Card revealed");
+
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }
+    }
+
+    public static boolean getIsRevealed(WebServerContext context){
+        boolean isRevealed = false;
+
+        try{
+            WebServerResponse response = context.getResponse();
+            CardsDAO cardDAO = new CardsDAO();
+
+            String idTemp = context.getRequest().getParam("card_ID");
+            int card_ID = Integer.parseInt(idTemp);
+            System.out.println("Card ID : " + card_ID);
+
+            isRevealed = cardDAO.getIsRevealed(card_ID);
+
+            response.json(isRevealed);
+            response.ok("Card revealed");
+
+            System.out.println("Card revealed");
+
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }
+        return isRevealed;
     }
 
 }

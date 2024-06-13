@@ -117,5 +117,60 @@ public class CardsDAO {
         return word;
     }
 
+    public ArrayList<String> getWords(){
+        ArrayList<String> words = new ArrayList<String>();
+        try{
+            PolyNamesDatabase database = new PolyNamesDatabase();
+            String request = "SELECT word_ID FROM cards;";
+
+            PreparedStatement statement = database.prepareStatement(request);
+            ResultSet result = statement.executeQuery();
+
+            while(result.next()){
+                String word = getWordById(result.getInt("word_ID"));
+                words.add(word);
+                System.out.println(word);
+            }
+
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }
+        System.out.println(words);
+        return words;
+    }
+
+
+    public void reveal(int card_ID){
+        try{
+            PolyNamesDatabase database = new PolyNamesDatabase();
+            String request = "UPDATE cards SET is_revealed = true WHERE cards_ID = ?;";
+
+            PreparedStatement statement = database.prepareStatement(request);
+            statement.setInt(1, card_ID);
+            statement.executeUpdate();
+
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }
+    }
+
+    public boolean getIsRevealed(int card_ID){
+        boolean is_revealed = false;
+        try{
+            PolyNamesDatabase database = new PolyNamesDatabase();
+            String request = "SELECT is_revealed FROM cards WHERE cards_ID = ?;";
+
+            PreparedStatement statement = database.prepareStatement(request);
+            statement.setInt(1, card_ID);
+            ResultSet result = statement.executeQuery();
+            result.next();
+            is_revealed = result.getBoolean("is_revealed");
+
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }
+        return is_revealed;
+    }
+
 
 }
