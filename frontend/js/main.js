@@ -25,9 +25,9 @@ function getCode() {
 }
 
 function choice(){
-
-    corps = document.getElementById("BoxSpace")
+    sessionStorage.setItem("Name",document.getElementById("userName").value)
     
+    corps = document.getElementById("BoxSpace")
     wordMasterBox = "<div class=\"Box\"><h1> Maître des mots </h1> <p> C'est celui qui sait et qui indique. Il a devant lui les cartes ainsi que leur couleur, il doit indiquer au Maître de l'intuition des indices permettant de choisir les bons mots </p> <button id=\"WMbutton\">Choisir</button></div>"
     
     hintMasterBox = "<div class=\"Box\"><h1> Maître des intuitions </h1> <p> C'est celui qui réfléchi et qui choisi. Il voit sans couleur et doit choisir les cartes correspondantes aux indices donnés par le Maître des mots. Attention aux cartes Rouges  <button id=\"HMbutton\">Choisir</button></p></div>"
@@ -40,12 +40,17 @@ function choice(){
 
 function WMchosen(){
     sessionStorage.setItem("Role_Choice","WordMaster")
+    
     document.getElementById("HMbutton").disabled = true
+    window.location.href = "GameWindow.html"
+    
 }
 
 function HMchosen(){
     sessionStorage.setItem("Role_Choice","HintMaster")
     document.getElementById("WMbutton").disabled = true
+    window.location.href = "GameWindow.html"
+    
 }
 
 
