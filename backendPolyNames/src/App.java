@@ -1,5 +1,6 @@
 import controllers.CardsController;
 import controllers.GameController;
+import controllers.RoundController;
 import controllers.WordController;
 import webserver.WebServer;
 import webserver.WebServerContext;
@@ -88,6 +89,73 @@ public class App {
             "/get_isRevealed/:card_ID",
             (WebServerContext context) -> {CardsController.getIsRevealed(context);}
         );
+
+        // Create a round
+        webServer.getRouter().get(
+            "/create_round",
+            (WebServerContext context) -> {RoundController.createRound(context);}
+        );
+
+        // Get the round ID
+        webServer.getRouter().get(
+            "/get_roundID",
+            (WebServerContext context) -> {RoundController.getRoundID(context);}
+        );
+
+        // Set the hint of a round by its ID
+        webServer.getRouter().get(
+            "/set_hint/:value",
+            (WebServerContext context) -> {RoundController.setHint(context);}
+        );
+
+        // Set the guessValue of a round by its ID
+        webServer.getRouter().get(
+            "/set_guessValue/:round_ID",
+            (WebServerContext context) -> {RoundController.setGuessValue(context);}
+        );
+
+        // Set the roundScore of a round by its ID
+        webServer.getRouter().get(
+            "/set_roundScore/:round_ID",
+            (WebServerContext context) -> {RoundController.setRoundScore(context);}
+        );
+
+        // Get the hint of a round by its ID
+        webServer.getRouter().get(
+            "/get_hint/:round_ID",
+            (WebServerContext context) -> {RoundController.getHintRound(context);}
+        );
+
+        // Get the hint of the last round
+        webServer.getRouter().get(
+            "/get_hint",
+            (WebServerContext context) -> {RoundController.getHint(context);}
+        );
+
+        // Get the guessValue of a round by its ID
+        webServer.getRouter().get(
+            "/get_guessValue/:round_ID",
+            (WebServerContext context) -> {RoundController.getGuessValueRound(context);}
+        );
+
+        // Get the guessValue of the last round
+        webServer.getRouter().get(
+            "/get_guessValue",
+            (WebServerContext context) -> {RoundController.getGuessValue(context);}
+        );
+
+        // Get the roundScore of a round by its ID
+        webServer.getRouter().get(
+            "/get_roundScore/:round_ID",
+            (WebServerContext context) -> {RoundController.getRoundScoreRound(context);}
+        );
+
+        // Get the roundScore of the last round
+        webServer.getRouter().get(
+            "/get_roundScore",
+            (WebServerContext context) -> {RoundController.getRoundScore(context);}
+        );
+
 
     }
 }
