@@ -37,7 +37,7 @@ public class App {
 
         // Get the words from the table Cards
         webServer.getRouter().get(
-            "/get_wordscards",
+            "/get_words",
             (WebServerContext context) -> {CardsController.getWords(context);}
             );
 
