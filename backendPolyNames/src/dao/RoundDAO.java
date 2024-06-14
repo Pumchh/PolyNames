@@ -66,7 +66,7 @@ public class RoundDAO {
     public void setGuessValue(int guessValue){
         try {
             PolyNamesDatabase database = new PolyNamesDatabase();
-            String request = "UPDATE round SET guessValue = ? WHERE round_ID = ?;";
+            String request = "UPDATE round SET guess_value = ? WHERE round_ID = ?;";
 
             PreparedStatement statement = database.prepareStatement(request);
             statement.setInt(1, guessValue);
@@ -81,7 +81,7 @@ public class RoundDAO {
     public void setRoundScore(int roundScore){
         try {
             PolyNamesDatabase database = new PolyNamesDatabase();
-            String request = "UPDATE round SET roundScore = ? WHERE round_ID = ?;";
+            String request = "UPDATE round SET round_score = ? WHERE round_ID = ?;";
 
             PreparedStatement statement = database.prepareStatement(request);
             statement.setInt(1, roundScore);
@@ -149,7 +149,7 @@ public class RoundDAO {
                 result.next();
             }
                 
-            guessValue = result.getInt("guessValue");
+            guessValue = result.getInt("guess_value");
             System.out.println("GuessValue : " + guessValue);
             
         } catch (Exception e) {
@@ -171,7 +171,7 @@ public class RoundDAO {
                 result.next();
             }
                 
-            guessValue = result.getInt("guessValue");
+            guessValue = result.getInt("guess_value");
             System.out.println("GuessValue : " + guessValue);
             
         } catch (Exception e) {
@@ -193,7 +193,7 @@ public class RoundDAO {
                 result.next();
             }
                 
-            roundScore = result.getInt("roundScore");
+            roundScore = result.getInt("round_score");
             System.out.println("RoundScore : " + roundScore);
             
         } catch (Exception e) {
@@ -215,7 +215,7 @@ public class RoundDAO {
                 result.next();
             }
                 
-            roundScore = result.getInt("roundScore");
+            roundScore = result.getInt("round_score");
             System.out.println("RoundScore : " + roundScore);
             
         } catch (Exception e) {

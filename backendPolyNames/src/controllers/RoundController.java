@@ -67,7 +67,7 @@ public class RoundController {
             WebServerResponse response = context.getResponse();
             RoundDAO roundDAO = new RoundDAO();
 
-            String guessValueTemp = context.getRequest().getParam(":round_ID");
+            String guessValueTemp = context.getRequest().getParam(":guessValue");
             int guessValue = Integer.parseInt(guessValueTemp);
 
             roundDAO.setGuessValue(guessValue);
@@ -85,7 +85,7 @@ public class RoundController {
             WebServerResponse response = context.getResponse();
             RoundDAO roundDAO = new RoundDAO();
 
-            String roundScoreTemp = context.getRequest().getParam(":round_ID");
+            String roundScoreTemp = context.getRequest().getParam(":score");
             int roundScore = Integer.parseInt(roundScoreTemp);
 
             roundDAO.setRoundScore(roundScore);
