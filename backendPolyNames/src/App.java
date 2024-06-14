@@ -156,6 +156,18 @@ public class App {
             (WebServerContext context) -> {RoundController.getRoundScore(context);}
         );
 
+        // Set score of a game
+        webServer.getRouter().get(
+            "/set_score/:score",
+            (WebServerContext context) -> {GameController.setScore(context);}
+        );
+
+        // Get score of a game by its ID
+        webServer.getRouter().get(
+            "/get_score/:game_ID",
+            (WebServerContext context) -> {GameController.getScore(context);}
+        );
+
 
     }
 }

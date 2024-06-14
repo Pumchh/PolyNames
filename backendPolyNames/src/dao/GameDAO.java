@@ -141,6 +141,42 @@ public class GameDAO {
         return wordMaster;
     }
 
+    public void setScore(int score){
+        try{
+            PolyNamesDatabase database = new PolyNamesDatabase();
+            String request = "UPDATE game SET score = ? WHERE game_ID = ?;";
+
+            PreparedStatement statement = database.prepareStatement(request);
+            statement.setInt(1, score);
+            statement.setInt(2, getGameID());
+            statement.executeUpdate();
+
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }
+    }
+
+    public int getScore(int game_ID){
+        int score = 0;
+        try{
+            PolyNamesDatabase database = new PolyNamesDatabase();
+            String request = "SELECT score FROM game WHERE game_ID = ?;";
+
+            PreparedStatement statement = database.prepareStatement(request);
+            statement.setInt(1, game_ID);
+            ResultSet result = statement.executeQuery();
+
+            while(result.next()){
+                score = result.getInt("score");
+            }
+
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }
+
+        return score;
+    }
+
 
 }
 

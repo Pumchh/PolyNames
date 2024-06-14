@@ -113,4 +113,37 @@ public class GameController {
         return wordMaster;
     }
 
+    public static void setScore(WebServerContext context) {
+        try{
+            WebServerResponse response = context.getResponse();
+            GameDAO gameDAO = new GameDAO();
+            int score = Integer.parseInt(context.getRequest().getParam("score"));
+
+            gameDAO.setScore(score);
+
+            response.ok("Score set");
+
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }
+    }
+
+    public static int getScore(WebServerContext context) {
+        int score = 0;
+        try{
+            WebServerResponse response = context.getResponse();
+            GameDAO gameDAO = new GameDAO();
+            int game_ID = Integer.parseInt(context.getRequest().getParam("game_ID"));
+
+            score = gameDAO.getScore(game_ID);
+
+            response.json(score);
+            response.ok("Score found");
+
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }
+        return score;
+    }
+
 }
