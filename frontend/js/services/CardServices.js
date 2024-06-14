@@ -23,6 +23,7 @@ export class CardsService {
 
     static async revealCard(_id){
         const response = await fetch("http://localhost:8080/reveal/:card_ID") ;
+
     }
 
     static async isRevealed(_id){
