@@ -1,5 +1,7 @@
 package controllers;
 
+import com.google.gson.JsonObject;
+
 import dao.RoundDAO;
 import webserver.WebServerContext;
 import webserver.WebServerResponse;
@@ -11,10 +13,15 @@ public class RoundController {
         try{
             WebServerResponse response = context.getResponse();
             RoundDAO roundDAO = new RoundDAO();
-
             roundDAO.createRound();
 
+            JsonObject json = new JsonObject();
+            json.addProperty("round_ID", roundDAO.getRoundID());
+
+            context.getSSE().emit("round", json);
+
             response.ok("Round créé");
+
         }catch(Exception e){
             System.out.println("Error: " + e);
         }
