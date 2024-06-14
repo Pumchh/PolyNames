@@ -130,7 +130,7 @@ function sendHint(){
 //const mySSEClient = new SSEClient("localhost:8080"); 
 //await mySSEClient.connect();
 //await mySSEClient.subscribe("hint" ,await GameService.updateHint() )
-//await mySSEClient.subscribe("score", await GameService.updateScore() )
+//gitawait mySSEClient.subscribe("score", await GameService.updateScore() )
 
 
 
