@@ -114,7 +114,7 @@ async function cardClicked(_card){
 }
 
 
-function sendHint(){
+async function sendHint(){
     //console.log("click")
     let guessValue = document.getElementById("inputGuessValue").value
     let hint = document.getElementById("inputIndice").value
@@ -122,8 +122,9 @@ function sendHint(){
     let toAdd = document.createElement("p");
     toAdd.innerHTML = "Indice \" " + hint + " - " + guessValue +"\" envoyé";
     hist.insertBefore(toAdd,hist.firstChild);
-    GameService.sendHint(hint)
-    GameService.sendGuessValue(guessValue)
+    awaitGameService.sendHint(hint)
+    awaitGameService.sendGuessValue(guessValue)
+    await GameService.updateScore()
 
 }
 

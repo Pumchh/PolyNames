@@ -68,6 +68,8 @@ export class GameService {
     static async updateScore(){
         let score = await this.getScore()
         sessionStorage.setItem("score", score)
+        let scoreCase = document.getElementById("score-counter")
+        scoreCase.innerHTML = sessionStorage.getItem("score")
     }
 }
 
