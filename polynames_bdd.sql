@@ -3,15 +3,12 @@ CREATE DATABASE IF NOT EXISTS polynames;
 
 use polynames;
 
-
-
--- Create the Words table
 CREATE TABLE IF NOT EXISTS Words (
     word_ID INT AUTO_INCREMENT PRIMARY KEY,
     word VARCHAR(32) NOT NULL
 );
 
--- Create the Game table
+
 CREATE TABLE IF NOT EXISTS Game (
     game_ID INT AUTO_INCREMENT PRIMARY KEY,
     hintMaster VARCHAR(15),
@@ -19,7 +16,7 @@ CREATE TABLE IF NOT EXISTS Game (
     score INT
 );
 
--- Create the Cards table
+
 CREATE TABLE IF NOT EXISTS Cards (
     cards_ID INT AUTO_INCREMENT PRIMARY KEY,
     game_ID INT,
@@ -30,7 +27,7 @@ CREATE TABLE IF NOT EXISTS Cards (
     FOREIGN KEY (word_ID) REFERENCES Words(word_ID)
 );
 
--- Create the Round table
+
 CREATE TABLE IF NOT EXISTS Round (
     round_ID INT AUTO_INCREMENT PRIMARY KEY,
     game_ID INT,
