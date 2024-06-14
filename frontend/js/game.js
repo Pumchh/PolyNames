@@ -22,7 +22,7 @@ function generateCards(){
 async function displayRightHTML(){
     if(sessionStorage.Role_Choice == "WordMaster"){
         let scoreBox = document.getElementById("score-box");
-        scoreBox.innerHTML = "<center> <h3> Donnez un indice </h3> <input id=\"inputIndice\"></input> <button id=\"seHint\"> Evoyer l'indice </button> </center>";
+        scoreBox.innerHTML = "<center><h3> Score : </h3><p id=\"score-counter\">0</p> <h3> Donnez un indice </h3> <input id=\"inputIndice\"></input> <button id=\"seHint\"> Evoyer l'indice </button> </center>";
         document.getElementById("seHint").addEventListener("click", ()=>{sendHint()})
         sessionStorage.setItem("score",0)
     }
@@ -30,15 +30,18 @@ async function displayRightHTML(){
         let allCards = document.querySelectorAll('card')
         allCards.forEach((card) => {
             card.addEventListener("click", () => {cardClicked(card)})
+            if(sessionStorage.getItem("Role_Choice") === "WordMaster"){
+                card.classList.add("revealed")
+            }
         })
         let send_button = document.getElementById("validate_sel")
-        send_button.addEventListener("click" , ()=>{sel_send()} )
+        send_button.addEventListener("click" , ()=>{selection_send()} )
         sessionStorage.setItem("score",0)
     }
 
 }
 
-async function sel_send() {
+async function selection_send() {
     let allCards = document.querySelectorAll("card")
     let j = 0 ;
     let selCards = []
@@ -60,10 +63,8 @@ async function sel_send() {
             console.log("Error : " + error)
         }
     }
- 
-    //gestion du score à finir !!!
-    console.log(selCards)
-    for(let k in selCards){
+
+    for(let k in selCards){ // gestion score en fonction sélection
         
             if(selCards[k].getAttribute("color") === "blue"){
            
@@ -78,11 +79,22 @@ async function sel_send() {
                     sessionStorage.setItem("score", current_score + toAdd );
                    
                 }
+            }
+            else if(selCards[k].getAttribute("color") === "black"){
+                window.close;
             }        
     }
-    
-    actualizeCards()
 
+    let hist = document.getElementById("history");
+    let toAdd = document.createElement("p");
+    toAdd.innerHTML = "Indice \" " + hint + "\" envoyé";
+    hist.insertBefore(toAdd,hist.firstChild);
+    
+    let scoreCase = document.getElementById("score-counter")
+    scoreCase.innerHTML = sessionStorage.getItem("score")
+    GameService.setScore(sessionStorage.getItem("score"))
+
+    await actualizeCards()
 
 }
 
@@ -100,12 +112,14 @@ async function cardClicked(_card){
 
 
 function sendHint(){
-    console.log("click")
-    // envoyer l'indice
+    //console.log("click")
+    
+    let hint = document.getElementById("inputIndice").value
     let hist = document.getElementById("history");
     let toAdd = document.createElement("p");
-    toAdd.innerHTML = "Indice envoyé";
+    toAdd.innerHTML = "Indice \" " + hint + "\" envoyé";
     hist.insertBefore(toAdd,hist.firstChild);
+    GameService.sendHint(hint)
 
 }
 

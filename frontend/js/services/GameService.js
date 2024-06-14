@@ -17,7 +17,12 @@ export class GameService {
         }
     }
 
-    static async setScore(){
-        const response = await fetch("http://localhost:8080/")
+    static async setScore(_score){
+        const response = await fetch("http://localhost:8080/set_score/"+_score)
+    }
+
+    static async sendHint(_hint){
+        const response = await fetch("http://localhost:8080/set_hint/"+_hint)
     }
 }
+
