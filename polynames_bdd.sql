@@ -1,5 +1,8 @@
 
-CREATE DATABASE IF NOT EXISTS polynames_bdd;
+CREATE DATABASE IF NOT EXISTS polynames;
+
+use polynames;
+
 
 -- Create the Words table
 CREATE TABLE IF NOT EXISTS Words (
@@ -439,3 +442,4 @@ INSERT INTO words (word) VALUES
 ('Étude'),
 ('Œil'),
 ('Œuf');
+
