@@ -1,4 +1,5 @@
 
+
 CREATE DATABASE IF NOT EXISTS polynames;
 
 use polynames;
