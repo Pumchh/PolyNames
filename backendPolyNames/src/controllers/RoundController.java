@@ -50,7 +50,7 @@ public class RoundController {
             RoundDAO roundDAO = new RoundDAO();
 
             String hint = context.getRequest().getParam(":value");
-
+            context.getSSE().emit("hint", hint);
             roundDAO.setHint(hint);
 
             response.ok("Hint ajouté");

@@ -220,7 +220,7 @@ export class SSEClient extends EventTarget
                 data = {};
             }
 
-            callback?.(data);
+            //callback?.(data);
         });
     }
 }

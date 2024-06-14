@@ -2,6 +2,7 @@ import { CardsService } from "./services/CardServices.js";
 import { GameService } from "./services/GameService.js";
 import { CardsView } from "./view/CardView.js";
 import { SSEClient } from "../libs/sse-client.js";
+import { RoundService } from "./services/RoundService.js";
 
 
 
@@ -85,9 +86,11 @@ async function selection_send() {
             }        
     }
 
+    let hint = await GameService.getHint()
+    let guessValue = await GameService.getGuessValue()
     let hist = document.getElementById("history");
     let toAdd = document.createElement("p");
-    toAdd.innerHTML = "Indice \" " + hint + "\" envoyé";
+    toAdd.innerHTML = "Indice \" " + hint + " - " + guessValue + "\" envoyé";
     hist.insertBefore(toAdd,hist.firstChild);
     
     let scoreCase = document.getElementById("score-counter")
@@ -113,20 +116,21 @@ async function cardClicked(_card){
 
 function sendHint(){
     //console.log("click")
-    let guessValue = document.getElementById("inputGuessValue")
+    let guessValue = document.getElementById("inputGuessValue").value
     let hint = document.getElementById("inputIndice").value
     let hist = document.getElementById("history");
     let toAdd = document.createElement("p");
     toAdd.innerHTML = "Indice \" " + hint + " - " + guessValue +"\" envoyé";
     hist.insertBefore(toAdd,hist.firstChild);
     GameService.sendHint(hint)
+    GameService.sendGuessValue(guessValue)
 
 }
 
-const mySSEClient = new SSEClient("localhost:8080"); 
-mySSEClient.connect();
-mySSEClient.subscribe("hint" , GameService.updateHint() )
-mySSEClient.subscribe("score", GameService.updateScore() )
+//const mySSEClient = new SSEClient("localhost:8080"); 
+//await mySSEClient.connect();
+//await mySSEClient.subscribe("hint" ,await GameService.updateHint() )
+//await mySSEClient.subscribe("score", await GameService.updateScore() )
 
 
 

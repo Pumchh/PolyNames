@@ -1,12 +1,15 @@
 import { GameService } from "./services/GameService.js";
 import { CardsService } from "./services/CardServices.js";
+import { RoundService } from "./services/RoundService.js";
 
 
 function setEventListener() {
     let join_reference = document.getElementById("joinGame");
     join_reference.addEventListener("click", () => {getCode()});
     let create_game = document.getElementById("createGame");
-    create_game.addEventListener("click", () => { choice() });
+    create_game.addEventListener("click", async () => { 
+        await gameCreation()
+        choice() });
 }
 
 
@@ -23,6 +26,8 @@ function getCode() {
     else {
         
         answer.innerHTML = "Code Bon";
+        sessionStorage.setItem("gameID", code )
+        choice()
     }
 
     
@@ -44,7 +49,6 @@ function choice(){
 
 async function WMchosen(){
     sessionStorage.setItem("Role_Choice","WordMaster")
-    await gameCreation()
     document.getElementById("HMbutton").disabled = true
     window.location.href = "GameWindow.html"
     
@@ -66,6 +70,8 @@ async function gameCreation(){
     await CardsService.selectCards();
     let gameID = await GameService.getGameID()
     sessionStorage.setItem("gameID", gameID)
+    //await RoundService.createRound()
+    
 }
 
 
