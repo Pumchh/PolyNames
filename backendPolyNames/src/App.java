@@ -44,7 +44,7 @@ public class App {
 
         // Create a game
         webServer.getRouter().get(
-            "/game/game/create_game",
+            "/game/create_game",
             (WebServerContext context) -> {GameController.createGame(context);}
         );
 
@@ -164,7 +164,7 @@ public class App {
 
         // Get score of a game by its ID
         webServer.getRouter().get(
-            "/game/get_score/:game_ID",
+            "/game/get_score/:score",
             (WebServerContext context) -> {GameController.getScore(context);}
         );
 
