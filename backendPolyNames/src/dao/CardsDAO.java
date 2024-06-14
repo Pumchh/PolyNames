@@ -3,6 +3,7 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import database.PolyNamesDatabase;
 import models.Cards;
@@ -22,6 +23,19 @@ public class CardsDAO {
         try{
             PolyNamesDatabase database = new PolyNamesDatabase();
             String request = "SELECT * FROM words ORDER BY RAND() LIMIT 25;";
+            ArrayList<String> colors = new ArrayList<String>();
+
+            for(int i = 0; i < 8; i++){
+                colors.add("blue");
+            }
+            for(int i = 0; i < 15; i++){
+                colors.add("grey");
+            }
+            for(int i = 0; i < 2; i++){
+                colors.add("black");
+            }
+
+            Collections.shuffle(colors);
 
             PreparedStatement statement = database.prepareStatement(request);
             ResultSet result = statement.executeQuery();
@@ -29,15 +43,8 @@ public class CardsDAO {
 
             while(result.next()){
                 int word_ID = result.getInt("word_ID");
-                String color = "";
-
-                if(1 <= i && i <= 8)
-                    color = "blue";
-                else if(9 <= i && i <= 23)
-                    color = "grey";
-                else if(24 <= i && i <= 25)
-                    color = "black";
-
+                String color = colors.get(i-1);
+                
                 Cards selectedCard = new Cards(i, game_ID, word_ID, color, false);
                 cards.add(selectedCard);
                 i++;
