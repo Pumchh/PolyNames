@@ -1,5 +1,7 @@
 package controllers;
 
+import com.google.gson.JsonObject;
+
 import dao.GameDAO;
 import webserver.WebServerContext;
 import webserver.WebServerResponse;
@@ -12,7 +14,7 @@ public class GameController {
             GameDAO gameDAO = new GameDAO();
 
             gameDAO.createGame();
-
+            
             response.ok("Game created");
 
         }catch(Exception e){
@@ -45,6 +47,11 @@ public class GameController {
 
             gameDAO.setHintMaster(hintMaster);
 
+            JsonObject json = new JsonObject();
+            json.addProperty("hintMaster", hintMaster);
+
+            context.getSSE().emit("hintmaster", json);
+
             response.ok("HintMaster set");
 
         }catch(Exception e){
@@ -57,6 +64,11 @@ public class GameController {
             WebServerResponse response = context.getResponse();
             GameDAO gameDAO = new GameDAO();
             String wordMaster = context.getRequest().getParam("wordMaster");
+
+            JsonObject json = new JsonObject();
+            json.addProperty("wordMaster", wordMaster);
+
+            context.getSSE().emit("wordmaster", json);
 
             gameDAO.setWordMaster(wordMaster);
 

@@ -80,8 +80,9 @@ async function sel_send() {
                 }
             }        
     }
-    actualizeCards()
     
+    actualizeCards()
+
 
 }
 
