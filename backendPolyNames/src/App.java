@@ -110,13 +110,13 @@ public class App {
 
         // Set the guessValue of a round by its ID
         webServer.getRouter().get(
-            "/set_guessValue/:round_ID",
+            "/set_guessValue/:guessValue",
             (WebServerContext context) -> {RoundController.setGuessValue(context);}
         );
 
         // Set the roundScore of a round by its ID
         webServer.getRouter().get(
-            "/set_roundScore/:round_ID",
+            "/set_roundScore/:score",
             (WebServerContext context) -> {RoundController.setRoundScore(context);}
         );
 
