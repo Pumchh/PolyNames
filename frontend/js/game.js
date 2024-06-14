@@ -113,11 +113,11 @@ async function cardClicked(_card){
 
 function sendHint(){
     //console.log("click")
-    
+    let guessValue = document.getElementById("inputGuessValue")
     let hint = document.getElementById("inputIndice").value
     let hist = document.getElementById("history");
     let toAdd = document.createElement("p");
-    toAdd.innerHTML = "Indice \" " + hint + "\" envoyé";
+    toAdd.innerHTML = "Indice \" " + hint + " - " + guessValue +"\" envoyé";
     hist.insertBefore(toAdd,hist.firstChild);
     GameService.sendHint(hint)
 
