@@ -12,6 +12,7 @@ public class GameController {
             GameDAO gameDAO = new GameDAO();
 
             gameDAO.createGame();
+            
 
             response.ok("Game created");
 
