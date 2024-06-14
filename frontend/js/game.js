@@ -1,7 +1,7 @@
 import { CardsService } from "./services/CardServices.js";
 import { GameService } from "./services/GameService.js";
 import { CardsView } from "./view/CardView.js";
-
+import { SSEClient } from "../libs/sse-client.js";
 
 
 
@@ -22,7 +22,7 @@ function generateCards(){
 async function displayRightHTML(){
     if(sessionStorage.Role_Choice == "WordMaster"){
         let scoreBox = document.getElementById("score-box");
-        scoreBox.innerHTML = "<center><h3> Score : </h3><p id=\"score-counter\">0</p> <h3> Donnez un indice </h3> <input id=\"inputIndice\"></input> <button id=\"seHint\"> Evoyer l'indice </button> </center>";
+        scoreBox.innerHTML = "<center><h3> Score : </h3><p id=\"score-counter\">0</p> <h3> Donnez un indice et le nombre de mots auquel il correspond </h3> <input id=\"inputIndice\"></input> <input id=\"inputGuessValue\"> </input> <br> <button id=\"seHint\"> Evoyer l'indice </button> </center>";
         document.getElementById("seHint").addEventListener("click", ()=>{sendHint()})
         sessionStorage.setItem("score",0)
     }
@@ -122,6 +122,11 @@ function sendHint(){
     GameService.sendHint(hint)
 
 }
+
+const mySSEClient = new SSEClient("localhost:8080"); 
+mySSEClient.connect();
+mySSEClient.subscribe("hint" , GameService.updateHint() )
+mySSEClient.subscribe("score", GameService.updateScore() )
 
 
 

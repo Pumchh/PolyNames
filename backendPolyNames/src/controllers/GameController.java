@@ -120,6 +120,7 @@ public class GameController {
             int score = Integer.parseInt(context.getRequest().getParam("score"));
 
             gameDAO.setScore(score);
+            context.getSSE().emit("score", score);
 
             response.ok("Score set");
 

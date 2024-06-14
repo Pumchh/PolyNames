@@ -51,6 +51,7 @@ async displayCards() {
                     allCard[i].setAttribute("color", descriptors.color.value) 
                     if(sessionStorage.getItem("Role_Choice") === "WordMaster"){
                         allCard[i].setAttribute("is_revealed", true) 
+                        allCard[i].classList.add("revealed")
                     }
                     else {
                         allCard[i].setAttribute("is_revealed", descriptors.is_revealed.value)
