@@ -1,4 +1,6 @@
 
+CREATE DATABASE IF NOT EXISTS polynames_bdd;
+
 -- Create the Words table
 CREATE TABLE IF NOT EXISTS Words (
     word_ID INT AUTO_INCREMENT PRIMARY KEY,
