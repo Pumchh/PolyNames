@@ -1,3 +1,4 @@
+
 function setEventListener() {
     join_reference = document.getElementById("joinGame");
     join_reference.addEventListener("click", () => {getCode()});
@@ -43,6 +44,7 @@ function WMchosen(){
     
     document.getElementById("HMbutton").disabled = true
     window.location.href = "GameWindow.html"
+    gameCreation()
     
 }
 
@@ -50,15 +52,15 @@ function HMchosen(){
     sessionStorage.setItem("Role_Choice","HintMaster")
     document.getElementById("WMbutton").disabled = true
     window.location.href = "GameWindow.html"
+
     
 }
 
-
-
-
-
-
-
+async function gameCreation(){
+    const game = await GameService.createGame();
+    sessionStorage.gameID = await GameService.getGameID();
+    await CardsService.selectCards();
+}
 
 
 

@@ -4,7 +4,6 @@ export class CardsView{
     
 async displayCards() {
     let stockage = await CardsService.getCards()
-    let arrayOfCard = []
     console.log(stockage)
     let i=0
     for(let bob in stockage){
@@ -16,11 +15,15 @@ async displayCards() {
     for(i;i<=allCard.length;i++){
 
         try {
-            let ID = allCard[i].getAttribute("word_ID")
-            let word = await CardsService.getWord(ID);
-            allCard[i].innerHTML = word;
+            if( !(allCard[i] === undefined) ){
+                let ID = allCard[i].getAttribute("word_ID")
+                let word = await CardsService.getWord(ID);
+                allCard[i].innerHTML = word;
+            }
+            
+            
         } catch (error) {
-            console.log("Error lol")
+            console.log("Error : "+ error)
         }
         
        
@@ -43,7 +46,8 @@ async displayCards() {
 
     for(i;i<=allCard.length;i++){
         try {
-            if( !(allCard[i].hasAttribute("card_ID")) ){
+            if( !(allCard[i] === undefined) ){
+                if( !(allCard[i].hasAttribute("card_ID")) ){
                 let descriptors = Object.getOwnPropertyDescriptors(_card)
                 allCard[i].setAttribute("card_ID", descriptors.card_ID.value) 
                 allCard[i].setAttribute("game_ID", descriptors.game_ID.value) 
@@ -53,9 +57,10 @@ async displayCards() {
     
                 //console.log( allCard[i])
                 break;
-            }
+            }}
+            
         } catch (error) {
-            console.log("Error in seting attribute")
+            console.log("Error : " + error)
         }
        
         

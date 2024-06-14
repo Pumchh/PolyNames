@@ -32,3 +32,28 @@ card {
     cursor: pointer;
 
 }
+
+card.selected {
+   border: magenta;
+   border-width: 5px;
+   border-style: solid;
+   
+}
+
+card.revealed[color ="blue"] {
+    border: blue;
+    border-width: 5px;
+   border-style: solid;
+}
+
+card.revealed[color ="grey"] {
+    border: gray;
+    border-width: 5px;
+    border-style: solid;
+}
+
+card.revealed[color ="black"] {
+    border: black;
+    border-width: 5px;
+    border-style: solid;
+}
