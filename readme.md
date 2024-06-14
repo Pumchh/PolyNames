@@ -1,5 +1,5 @@
 
-# Project: PolyNames
+# Projet : PolyNames
 
 Jeu par Martial FOUSSET et Gaël CHAUVET
 
