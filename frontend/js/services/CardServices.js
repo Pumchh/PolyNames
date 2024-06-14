@@ -1,12 +1,12 @@
 export class CardsService {
 
     static async selectCards() {
-        const response = await fetch("http://localhost:8080/game/put_cards")
+        const response = await fetch("http://localhost:8080/put_cards")
         
     }
 
     static async getCards() {
-        const response = await fetch("http://localhost:8080/game/get_cards")
+        const response = await fetch("http://localhost:8080/get_cards")
         if(response.status === 200){
             let data = await response.json()
             //console.log(data);
@@ -15,14 +15,14 @@ export class CardsService {
     }
 
     static async getWords(){
-        const response = await fetch("http://localhost:8080/cards/get_words") ;
+        const response = await fetch("http://localhost:8080/get_words") ;
         let data = await response.json()
         //console.log(data)
         return data;
     }
 
     static async revealCard(_id){
-        const response = await fetch("http://localhost:8080/cards/reveal/" + _id) ;
+        const response = await fetch("http://localhost:8080/reveal/" + _id) ;
     
     }
 
@@ -33,7 +33,7 @@ export class CardsService {
     }
 
     static async getWord(_id){
-        const response = await fetch("http://localhost:8080/getword/"+ _id )
+        const response = await fetch("http://localhost:8080/get_word/"+ _id )
         if(response.status === 200){
             let data = await response.json()
             //console.log(data);
