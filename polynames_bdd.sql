@@ -1,5 +1,8 @@
 
-CREATE DATABASE IF NOT EXISTS polynames_bdd;
+CREATE DATABASE IF NOT EXISTS polynames;
+
+use polynames;
+
 
 -- Create the Words table
 CREATE TABLE IF NOT EXISTS Words (
@@ -35,7 +38,6 @@ CREATE TABLE IF NOT EXISTS Round (
     round_score INT,
     FOREIGN KEY (game_ID) REFERENCES Game(game_ID)
 );
-
 
 INSERT INTO words (word) VALUES 
 ('Afrique'),
@@ -438,3 +440,4 @@ INSERT INTO words (word) VALUES
 ('Étude'),
 ('Œil'),
 ('Œuf');
+
