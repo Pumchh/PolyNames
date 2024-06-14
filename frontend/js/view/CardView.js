@@ -29,10 +29,6 @@ async displayCards() {
        
 
     }
-        
-
-  
-    sessionStorage.grid = stockage
     let data = await CardsService.getWords();
     //let list = JSON.parse(data)
     for(let i = 0; i<data.length;i++){
@@ -48,16 +44,23 @@ async displayCards() {
         try {
             if( !(allCard[i] === undefined) ){
                 if( !(allCard[i].hasAttribute("card_ID")) ){
-                let descriptors = Object.getOwnPropertyDescriptors(_card)
-                allCard[i].setAttribute("card_ID", descriptors.card_ID.value) 
-                allCard[i].setAttribute("game_ID", descriptors.game_ID.value) 
-                allCard[i].setAttribute("word_ID", descriptors.word_ID.value) 
-                allCard[i].setAttribute("color", descriptors.color.value) 
-                allCard[i].setAttribute("is_revealed", descriptors.is_revealed.value) 
-    
-                //console.log( allCard[i])
-                break;
-            }}
+                    let descriptors = Object.getOwnPropertyDescriptors(_card)
+                    allCard[i].setAttribute("card_ID", descriptors.card_ID.value) 
+                    allCard[i].setAttribute("game_ID", descriptors.game_ID.value) 
+                    allCard[i].setAttribute("word_ID", descriptors.word_ID.value) 
+                    allCard[i].setAttribute("color", descriptors.color.value) 
+                    if(sessionStorage.getItem("Role_Choice") === "WordMaster"){
+                        allCard[i].setAttribute("is_revealed", true) 
+                    }
+                    else {
+                        allCard[i].setAttribute("is_revealed", descriptors.is_revealed.value)
+                    }
+
+        
+                    //console.log( allCard[i])
+                    break;
+                }
+            }
             
         } catch (error) {
             console.log("Error : " + error)
