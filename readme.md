@@ -1,6 +1,8 @@
 
 # Project: PolyNames
 
+Jeu par Martial FOUSSET et Gaël CHAUVET
+
 ## But
 
 Creer un jeu basé sur CodeNames
