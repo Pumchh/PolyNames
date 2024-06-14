@@ -4,6 +4,7 @@ CREATE DATABASE IF NOT EXISTS polynames;
 use polynames;
 
 
+
 -- Create the Words table
 CREATE TABLE IF NOT EXISTS Words (
     word_ID INT AUTO_INCREMENT PRIMARY KEY,
