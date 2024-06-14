@@ -16,4 +16,8 @@ export class GameService {
             return data;
         }
     }
+
+    static async setScore(){
+        const response = await fetch("http://localhost:8080/")
+    }
 }

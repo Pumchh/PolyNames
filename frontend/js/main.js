@@ -1,3 +1,6 @@
+import { GameService } from "./services/GameService.js";
+import { CardsService } from "./services/CardServices.js";
+
 
 function setEventListener() {
     let join_reference = document.getElementById("joinGame");
@@ -39,12 +42,12 @@ function choice(){
     document.getElementById("HMbutton").addEventListener("click", ()=>{HMchosen()})
 }
 
-function WMchosen(){
+async function WMchosen(){
     sessionStorage.setItem("Role_Choice","WordMaster")
-    
+    await gameCreation()
     document.getElementById("HMbutton").disabled = true
     window.location.href = "GameWindow.html"
-    gameCreation()
+    
     
 }
 
@@ -59,7 +62,10 @@ function HMchosen(){
 async function gameCreation(){
     const game = await GameService.createGame();
     sessionStorage.gameID = await GameService.getGameID();
+    await CardsService.pu
     await CardsService.selectCards();
+    let gameID = await GameService.getGameID()
+    sessionStorage.setItem("gameID", gameID)
 }
 
 

@@ -24,7 +24,7 @@ async function displayRightHTML(){
         let scoreBox = document.getElementById("score-box");
         scoreBox.innerHTML = "<center> <h3> Donnez un indice </h3> <input id=\"inputIndice\"></input> <button id=\"seHint\"> Evoyer l'indice </button> </center>";
         document.getElementById("seHint").addEventListener("click", ()=>{sendHint()})
-        
+        sessionStorage.setItem("score",0)
     }
     if(sessionStorage.Role_Choice == "HintMaster"){
         let allCards = document.querySelectorAll('card')
@@ -33,32 +33,57 @@ async function displayRightHTML(){
         })
         let send_button = document.getElementById("validate_sel")
         send_button.addEventListener("click" , ()=>{sel_send()} )
+        sessionStorage.setItem("score",0)
     }
 
 }
 
 async function sel_send() {
     let allCards = document.querySelectorAll("card")
+    let j = 0 ;
+    let selCards = []
     for(let i in allCards){
-    
         try {
-            if( !(allCards[i] === undefined) ){
+            if( !(allCards[i].classList === undefined) ){
+                
                 if(allCards[i].classList.contains("selected")) {
 
                     CardsService.revealCard(allCards[i].card_ID)
                     allCards[i].classList.remove("selected")
                     allCards[i].classList.add("revealed")
                     allCards[i].setAttribute("is_revealed", true)
-                } 
+                    selCards[j] = allCards[i];
+                    j++
+                }
             }
-         
-            
         } catch (error) {
             console.log("Error : " + error)
         }
-
     }
+ 
+    //gestion du score à finir !!!
+    console.log(selCards)
+    for(let k in selCards){
+        
+            if(selCards[k].getAttribute("color") === "blue"){
+           
+                if(selCards[parseInt(k)+1] === undefined){
+                    let toAdd = parseInt(k)+1;
+                    let current_score = parseInt(sessionStorage.getItem("score"))
+                    sessionStorage.setItem("score", current_score + toAdd*toAdd );
+                }
+                else {
+                    let toAdd = parseInt(k)+1;
+                    let current_score = parseInt(sessionStorage.getItem("score"))
+                    sessionStorage.setItem("score", current_score + toAdd );
+                   
+                }
+            }        
+    }
+    
     actualizeCards()
+
+
 }
 
 async function cardClicked(_card){
@@ -70,8 +95,6 @@ async function cardClicked(_card){
             _card.classList.remove("selected")
         }
     }
-    
-    
 
 }
 

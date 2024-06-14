@@ -4,7 +4,7 @@ export class CardsView{
     
 async displayCards() {
     let stockage = await CardsService.getCards()
-    console.log(stockage)
+    //console.log(stockage)
     let i=0
     for(let bob in stockage){
         let result = stockage[bob]

@@ -39,6 +39,8 @@ CREATE TABLE IF NOT EXISTS Round (
     FOREIGN KEY (game_ID) REFERENCES Game(game_ID)
 );
 
+SET global max_connections = 1000000;
+
 INSERT INTO words (word) VALUES 
 ('Afrique'),
 ('Aiguille'),
